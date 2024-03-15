@@ -20,6 +20,14 @@ import axios from 'axios';
     }
   })
 
+  export const DeleteData = createAsyncThunk('todo/deletedaa',async(data)=>{
+    try{
+      const res = await axios.post('http://localhost:8000/todo/deletetodo',{data});
+    } catch(error){
+      console.log(error.message);
+    }
+  })
+
   const todoSlice = createSlice({
     name:"todos",
     initialState:{
@@ -37,6 +45,9 @@ import axios from 'axios';
         })
         .addCase(SendData.fulfilled,(state, action)=>{
             state.message = "data sent to backend"
+        })
+        .addCase(DeleteData.fulfilled,(state,action)=>{
+          state.message = "data deleted from backend"
         })
         
     }
