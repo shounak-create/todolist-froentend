@@ -20,9 +20,17 @@ import axios from 'axios';
     }
   })
 
-  export const DeleteData = createAsyncThunk('todo/deletedaa',async(data)=>{
+  export const DeleteData = createAsyncThunk('todo/deletedaa',async(id)=>{
     try{
-      const res = await axios.post('http://localhost:8000/todo/deletetodo',{data});
+      const res = await axios.delete(`http://localhost:8000/todo/deletetodo/${id}`);
+    } catch(error){
+      console.log(error.message);
+    }
+  })
+
+  export const completedtask = createAsyncThunk('todo/completetask',async(data)=>{
+    try{
+      const res = await axios.put('http://localhost:8000/todo/completetask',{data});
     } catch(error){
       console.log(error.message);
     }
@@ -49,7 +57,9 @@ import axios from 'axios';
         .addCase(DeleteData.fulfilled,(state,action)=>{
           state.message = "data deleted from backend"
         })
-        
+        .addCase(completedtask.fulfilled,(state,action)=>{
+          state.message = "task has been completed"
+        })        
     }
   })
 //   export const { fetchdata } = dataSlice.actions;

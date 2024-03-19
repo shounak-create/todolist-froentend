@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { fetchdata,DeleteData,completedtask } from './redux/reducers/todoreducer';
 
-function AllTodos() {
+
+function CompletedTodos() {
+
     const data = useSelector(state => state.todo.data)
-    const incomplete_todos = data.filter((todo)=> !todo.completed)
+    const completed_todos = data.filter((todo)=> todo.completed)
     const dispatch = useDispatch();
 
     useEffect(()=>{
@@ -25,7 +27,7 @@ function AllTodos() {
 
     return (
         <div>
-            {incomplete_todos.map((todo) => (
+            {completed_todos.map((todo) => (
                 <div key={todo._id}>
                     <input
                         type="checkbox"
@@ -41,4 +43,4 @@ function AllTodos() {
     );
 }
 
-export default AllTodos;
+export default CompletedTodos
