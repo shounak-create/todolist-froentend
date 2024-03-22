@@ -14,7 +14,7 @@ import axios from 'axios';
   export const SendData = createAsyncThunk('todo/senddata',async(data)=>{
     try {
         const response = await axios.post('http://localhost:8000/todo/addtodo',{data});
-        
+                
     } catch (error) {
         console.log(error.message);
     }

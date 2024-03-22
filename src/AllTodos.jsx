@@ -4,7 +4,6 @@ import { fetchdata,DeleteData,completedtask } from './redux/reducers/todoreducer
 
 function AllTodos() {
     const data = useSelector(state => state.todo.data)
-    const incomplete_todos = data.filter((todo)=> !todo.completed)
     const dispatch = useDispatch();
 
     useEffect(()=>{
@@ -25,7 +24,7 @@ function AllTodos() {
 
     return (
         <div>
-            {incomplete_todos.map((todo) => (
+            {data.map((todo) => (
                 <div key={todo._id}>
                     <input
                         type="checkbox"
